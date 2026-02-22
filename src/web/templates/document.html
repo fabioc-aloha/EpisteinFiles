@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}{{ doc.filename }} — Epstein Files Analyzer{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-500">
+        <a href="/search" class="hover:text-amber-400">Search</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-300">{{ doc.filename }}</span>
+    </div>
+
+    <!-- Document header -->
+    <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+        <div class="flex justify-between items-start">
+            <div>
+                <h2 class="text-xl font-bold text-amber-400">{{ doc.filename }}</h2>
+                <div class="flex gap-4 mt-2 text-sm text-gray-400">
+                    <span class="uppercase bg-gray-800 px-2 py-0.5 rounded">{{ doc.source }}</span>
+                    {% if doc.doc_type %}
+                    <span>{{ doc.doc_type }}</span>
+                    {% endif %}
+                    {% if doc.page_count %}
+                    <span>{{ doc.page_count }} pages</span>
+                    {% endif %}
+                    <span
+                        class="{% if doc.processing_status == 'completed' %}text-emerald-400{% elif doc.processing_status == 'failed' %}text-red-400{% else %}text-gray-400{% endif %}">
+                        {{ doc.processing_status }}
+                    </span>
+                </div>
+            </div>
+            {% if doc.redaction_score > 0 %}
+            <div class="text-right">
+                <div class="text-2xl font-bold text-red-400">{{ "%.0f"|format(doc.redaction_score * 100) }}%</div>
+                <div class="text-xs text-gray-500">Redacted</div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if doc.blob_url %}
+        <div class="mt-4">
+            <a href="{{ doc.blob_url }}" target="_blank" class="text-sm text-blue-400 hover:underline">View original PDF
+                &#8599;</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Document text -->
+        <div class="lg:col-span-2 bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <h3 class="text-lg font-semibold mb-4">Extracted Text</h3>
+            {% if doc.extracted_text %}
+            <div class="prose prose-invert prose-sm max-w-none">
+                <pre
+                    class="whitespace-pre-wrap text-sm text-gray-300 font-sans leading-relaxed">{{ doc.extracted_text }}</pre>
+            </div>
+            {% else %}
+            <p class="text-gray-500 italic">Text not yet extracted. Check processing status.</p>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar: entities found -->
+        <div class="space-y-4">
+            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                <h3 class="text-lg font-semibold mb-4">Entities Found</h3>
+                {% if mentions %}
+                <div class="space-y-2">
+                    {% set seen = [] %}
+                    {% for mention in mentions %}
+                    {% if mention.entity.canonical not in seen %}
+                    {% if seen.append(mention.entity.canonical) %}{% endif %}
+                    <a href="/entities/{{ mention.entity.id }}"
+                        class="flex justify-between items-center px-3 py-1.5 rounded hover:bg-gray-800 transition">
+                        <span class="text-sm">
+                            <span class="text-xs uppercase mr-1
+                                {% if mention.entity.entity_type == 'PERSON' %}text-blue-400
+                                {% elif mention.entity.entity_type == 'ORG' %}text-purple-400
+                                {% elif mention.entity.entity_type == 'GPE' %}text-green-400
+                                {% else %}text-gray-400{% endif %}">
+                                {{ mention.entity.entity_type }}
+                            </span>
+                            {{ mention.entity.canonical }}
+                        </span>
+                        <span class="text-xs text-gray-600">{{ "%.0f"|format(mention.confidence * 100) }}%</span>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-500 italic text-sm">No entities extracted yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- Metadata -->
+            {% if doc.metadata_ and doc.metadata_ != {} %}
+            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                <h3 class="text-lg font-semibold mb-4">Metadata</h3>
+                <dl class="space-y-2 text-sm">
+                    {% for key, value in doc.metadata_.items() %}
+                    <div>
+                        <dt class="text-gray-500 text-xs uppercase">{{ key }}</dt>
+                        <dd class="text-gray-300">{{ value }}</dd>
+                    </div>
+                    {% endfor %}
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

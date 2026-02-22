@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Entities — Epstein Files Analyzer{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold">Entities</h2>
+        <span class="text-sm text-gray-500">{{ "{:,}".format(total) }} total</span>
+    </div>
+
+    <!-- Filters -->
+    <form hx-get="/entities" hx-target="#entity-list" hx-push-url="true" class="flex gap-3">
+        <input type="text" name="q" value="{{ q }}" placeholder="Search by name..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2
+                      focus:outline-none focus:ring-2 focus:ring-amber-400/50">
+        <select name="entity_type" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2">
+            <option value="">All types</option>
+            {% for t in entity_types %}
+            <option value="{{ t }}" {% if entity_type==t %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-semibold px-4 py-2 rounded-lg">
+            Filter
+        </button>
+    </form>
+
+    <!-- Entity list -->
+    <div id="entity-list" class="bg-gray-900 rounded-xl border border-gray-800">
+        {% if entities %}
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="text-gray-500 border-b border-gray-800">
+                    <th class="text-left py-3 px-4">Name</th>
+                    <th class="text-left py-3 px-4">Type</th>
+                    <th class="text-right py-3 px-4">Mentions</th>
+                    <th class="text-left py-3 px-4">Aliases</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/50">
+                    <td class="py-3 px-4">
+                        <a href="/entities/{{ entity.id }}" class="text-amber-400 hover:underline font-medium">
+                            {{ entity.canonical }}
+                        </a>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-0.5 rounded text-xs
+                            {% if entity.entity_type == 'PERSON' %}bg-blue-900/50 text-blue-300
+                            {% elif entity.entity_type == 'ORG' %}bg-purple-900/50 text-purple-300
+                            {% elif entity.entity_type == 'GPE' %}bg-green-900/50 text-green-300
+                            {% else %}bg-gray-800 text-gray-400{% endif %}">
+                            {{ entity.entity_type }}
+                        </span>
+                    </td>
+                    <td class="py-3 px-4 text-right font-mono text-gray-400">
+                        {{ "{:,}".format(entity.mention_count) }}
+                    </td>
+                    <td class="py-3 px-4 text-gray-500 text-xs">
+                        {% if entity.aliases %}
+                        {{ entity.aliases[:3]|join(", ") }}
+                        {% if entity.aliases|length > 3 %}+{{ entity.aliases|length - 3 }} more{% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="p-8 text-center text-gray-500 italic">
+            No entities found. Run the NER pipeline to extract entities from documents.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

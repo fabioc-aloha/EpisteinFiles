@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Search — Epstein Files Analyzer{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <h2 class="text-2xl font-bold">Search the Corpus</h2>
+
+    <!-- Search form -->
+    <form hx-get="/search" hx-target="#results" hx-push-url="true" class="space-y-4">
+        <div class="flex gap-3">
+            <input type="text" name="q" value="{{ q }}"
+                placeholder="Search documents... (e.g., 'flight log', 'Maxwell deposition')" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-lg
+                          focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400
+                          placeholder-gray-600" autofocus>
+            <button type="submit"
+                class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-semibold px-6 py-3 rounded-lg transition">
+                Search
+            </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex gap-4 text-sm" x-data="{ showFilters: false }">
+            <button type="button" @click="showFilters = !showFilters"
+                class="text-gray-400 hover:text-amber-400 transition">
+                &#9660; Filters
+            </button>
+            <div x-show="showFilters" x-cloak class="flex gap-4">
+                <select name="source" class="bg-gray-900 border border-gray-700 rounded px-3 py-1.5">
+                    <option value="">All sources</option>
+                    {% for s in sources %}
+                    <option value="{{ s }}" {% if source==s %}selected{% endif %}>{{ s }}</option>
+                    {% endfor %}
+                </select>
+                <select name="doc_type" class="bg-gray-900 border border-gray-700 rounded px-3 py-1.5">
+                    <option value="">All types</option>
+                    {% for t in doc_types %}
+                    <option value="{{ t }}" {% if doc_type==t %}selected{% endif %}>{{ t }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <!-- Results -->
+    <div id="results">
+        {% include "search_results.html" %}
+    </div>
+</div>
+{% endblock %}

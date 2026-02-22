@@ -1,6 +1,15 @@
 {
   "hotFiles": [],
-  "stalledFiles": [],
+  "stalledFiles": [
+    "github/episodic/peripheral/file-observations.json",
+    "pyproject.toml",
+    "Dockerfile",
+    "README.md",
+    "db/",
+    "docker-compose.yml",
+    "src/",
+    "tests/"
+  ],
   "todoHotspots": [],
-  "lastUpdated": 1771789464602
+  "lastUpdated": 1771790027628
 }

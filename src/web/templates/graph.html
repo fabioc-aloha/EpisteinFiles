@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block title %}Network Graph — Epstein Files Analyzer{% endblock %}
+
+{% block head %}
+<style>
+    #graph-container {
+        width: 100%;
+        height: calc(100vh - 12rem);
+        background: #0a0a0a;
+        border-radius: 0.75rem;
+        border: 1px solid #1f2937;
+    }
+
+    .node-label {
+        fill: #d1d5db;
+        font-size: 10px;
+        pointer-events: none;
+    }
+
+    .link {
+        stroke: #374151;
+        stroke-opacity: 0.6;
+    }
+
+    .tooltip {
+        position: absolute;
+        background: #1f2937;
+        border: 1px solid #374151;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 12px;
+        color: #e5e7eb;
+        pointer-events: none;
+        z-index: 100;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+    <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold">Network Graph</h2>
+        <div class="flex gap-3 text-sm" x-data="{ minStrength: 2, limit: 100 }">
+            <label class="text-gray-400">
+                Min strength:
+                <input type="range" x-model="minStrength" min="1" max="20" step="1" class="w-24 align-middle"
+                    @change="loadGraph(minStrength, limit)">
+                <span x-text="minStrength" class="font-mono text-amber-400"></span>
+            </label>
+            <label class="text-gray-400">
+                Max nodes:
+                <select x-model="limit" @change="loadGraph(minStrength, limit)"
+                    class="bg-gray-800 border border-gray-700 rounded px-2 py-1">
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div id="graph-container"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+    const container = document.getElementById('graph-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const svg = d3.select('#graph-container')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    const tooltip = d3.select('body').append('div').attr('class', 'tooltip').style('opacity', 0);
+
+    const colorScale = {
+        'PERSON': '#60a5fa',
+        'ORG': '#a78bfa',
+        'GPE': '#34d399',
+        'FAC': '#fbbf24',
+        'DATE': '#f87171',
+    };
+
+    let simulation, linkGroup, nodeGroup, labelGroup;
+
+    function loadGraph(minStrength = 2, limit = 100) {
+        const params = new URLSearchParams(window.location.search);
+        const entityId = params.get('entity_id');
+        let url = `/graph/api/data?min_strength=${minStrength}&limit=${limit}`;
+        if (entityId) url += `&entity_id=${entityId}`;
+
+        fetch(url)
+            .then(r => r.json())
+            .then(data => renderGraph(data));
+    }
+
+    function renderGraph(data) {
+        svg.selectAll('*').remove();
+
+        if (!data.nodes.length) {
+            svg.append('text')
+                .attr('x', width / 2).attr('y', height / 2)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#6b7280')
+                .text('No relationship data yet. Process documents to build the network.');
+            return;
+        }
+
+        const sizeScale = d3.scaleSqrt()
+            .domain(d3.extent(data.nodes, d => d.mentions))
+            .range([4, 20]);
+
+        simulation = d3.forceSimulation(data.nodes)
+            .force('link', d3.forceLink(data.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(d => sizeScale(d.mentions) + 5));
+
+        linkGroup = svg.append('g')
+            .selectAll('line')
+            .data(data.links)
+            .enter().append('line')
+            .attr('class', 'link')
+            .attr('stroke-width', d => Math.sqrt(d.strength));
+
+        nodeGroup = svg.append('g')
+            .selectAll('circle')
+            .data(data.nodes)
+            .enter().append('circle')
+            .attr('r', d => sizeScale(d.mentions))
+            .attr('fill', d => colorScale[d.type] || '#6b7280')
+            .attr('stroke', '#1f2937')
+            .attr('stroke-width', 1.5)
+            .on('mouseover', (event, d) => {
+                tooltip.transition().duration(200).style('opacity', 1);
+                tooltip.html(`<strong>${d.name}</strong><br>${d.type} · ${d.mentions.toLocaleString()} mentions`)
+                    .style('left', (event.pageX + 12) + 'px')
+                    .style('top', (event.pageY - 20) + 'px');
+            })
+            .on('mouseout', () => tooltip.transition().duration(200).style('opacity', 0))
+            .on('click', (event, d) => window.location.href = `/entities/${d.id}`)
+            .call(d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended));
+
+        labelGroup = svg.append('g')
+            .selectAll('text')
+            .data(data.nodes)
+            .enter().append('text')
+            .attr('class', 'node-label')
+            .attr('dx', d => sizeScale(d.mentions) + 4)
+            .attr('dy', 3)
+            .text(d => d.mentions > 100 ? d.name : '');
+
+        simulation.on('tick', () => {
+            linkGroup
+                .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+            nodeGroup.attr('cx', d => d.x).attr('cy', d => d.y);
+            labelGroup.attr('x', d => d.x).attr('y', d => d.y);
+        });
+    }
+
+    function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+    }
+    function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+    function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+    }
+
+    loadGraph();
+</script>
+{% endblock %}

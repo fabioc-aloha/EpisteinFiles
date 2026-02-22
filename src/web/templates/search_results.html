@@ -1,0 +1,61 @@
+{% if q %}
+<div class="text-sm text-gray-500 mb-4">
+    {{ "{:,}".format(total) }} results for "<span class="text-gray-300">{{ q }}</span>"
+    {% if search_time_ms %}<span class="ml-2">({{ search_time_ms }}ms)</span>{% endif %}
+</div>
+
+{% if results %}
+<div class="space-y-3">
+    {% for doc in results %}
+    <a href="/docs/{{ doc.id }}"
+        class="block bg-gray-900 rounded-lg p-4 border border-gray-800 hover:border-amber-400/30 transition">
+        <div class="flex justify-between items-start">
+            <div>
+                <h3 class="text-amber-400 font-medium">{{ doc.filename }}</h3>
+                <div class="flex gap-3 mt-1 text-xs text-gray-500">
+                    <span class="uppercase">{{ doc.source }}</span>
+                    {% if doc.doc_type %}<span>{{ doc.doc_type }}</span>{% endif %}
+                    {% if doc.page_count %}<span>{{ doc.page_count }} pages</span>{% endif %}
+                </div>
+            </div>
+            {% if doc.redaction_score > 0 %}
+            <span class="text-xs bg-red-900/50 text-red-300 px-2 py-0.5 rounded">
+                {{ "%.0f"|format(doc.redaction_score * 100) }}% redacted
+            </span>
+            {% endif %}
+        </div>
+        {% if doc.extracted_text %}
+        <p class="text-sm text-gray-400 mt-2 line-clamp-2">
+            {{ doc.extracted_text[:300] }}{% if doc.extracted_text|length > 300 %}...{% endif %}
+        </p>
+        {% endif %}
+    </a>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if total_pages > 1 %}
+<div class="flex justify-center gap-2 mt-6">
+    {% if page > 1 %}
+    <a href="/search?q={{ q }}&source={{ source }}&doc_type={{ doc_type }}&page={{ page - 1 }}"
+        class="px-3 py-1 bg-gray-800 rounded hover:bg-gray-700 text-sm">Prev</a>
+    {% endif %}
+    <span class="px-3 py-1 text-sm text-gray-500">Page {{ page }} of {{ total_pages }}</span>
+    {% if page < total_pages %} <a
+        href="/search?q={{ q }}&source={{ source }}&doc_type={{ doc_type }}&page={{ page + 1 }}"
+        class="px-3 py-1 bg-gray-800 rounded hover:bg-gray-700 text-sm">Next</a>
+        {% endif %}
+</div>
+{% endif %}
+
+{% else %}
+<p class="text-gray-500 italic">No documents found matching "{{ q }}".</p>
+{% endif %}
+
+{% else %}
+<div class="text-center py-16 text-gray-600">
+    <p class="text-6xl mb-4">&#128270;</p>
+    <p class="text-lg">Enter a search query to explore the corpus</p>
+    <p class="text-sm mt-2">Try: "flight log", "Maxwell", "Palm Beach", "Virgin Islands"</p>
+</div>
+{% endif %}

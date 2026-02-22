@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Sources — Epstein Files Analyzer{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <h2 class="text-2xl font-bold">Data Sources</h2>
+
+    <div class="grid grid-cols-1 gap-4">
+        {% for src in sources %}
+        <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-lg font-semibold text-amber-400">{{ src.name }}</h3>
+                    <p class="text-sm text-gray-400 mt-1">{{ src.description }}</p>
+                    <a href="{{ src.url }}" target="_blank"
+                        class="text-xs text-blue-400 hover:underline mt-1 inline-block">
+                        {{ src.url }} &#8599;
+                    </a>
+                </div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold font-mono">{{ "{:,}".format(src.ingested) }}</div>
+                    <div class="text-xs text-gray-500">
+                        {% if src.total_docs %}
+                        of {{ "{:,}".format(src.total_docs) }}
+                        {% else %}
+                        ingested
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            {% if src.total_docs and src.total_docs > 0 %}
+            {% set pct = (src.ingested / src.total_docs * 100)|round(1) %}
+            <div class="mt-4">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                    <span>Ingestion progress</span>
+                    <span>{{ pct }}%</span>
+                </div>
+                <div class="w-full bg-gray-800 rounded-full h-2">
+                    <div class="bg-amber-500 h-2 rounded-full transition-all" style="width: {{ pct }}%"></div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Status breakdown -->
+            {% if src.statuses %}
+            <div class="flex gap-4 mt-3 text-xs">
+                {% for status, count in src.statuses.items() %}
+                <span
+                    class="{% if status == 'completed' %}text-emerald-400{% elif status == 'failed' %}text-red-400{% elif status == 'processing' %}text-amber-400{% else %}text-gray-500{% endif %}">
+                    {{ status }}: {{ "{:,}".format(count) }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

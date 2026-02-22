@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Epstein Files Analyzer{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .htmx-indicator {
+            opacity: 0;
+            transition: opacity 200ms ease-in;
+        }
+
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+        }
+
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+
+<body class="h-full bg-gray-950 text-gray-100">
+    <div class="min-h-full flex">
+        <!-- Sidebar -->
+        <nav class="w-64 bg-gray-900 border-r border-gray-800 flex flex-col" x-data="{ open: true }">
+            <div class="p-4 border-b border-gray-800">
+                <h1 class="text-lg font-bold text-amber-400">
+                    <a href="/">&#128270; Epstein Files</a>
+                </h1>
+                <p class="text-xs text-gray-500 mt-1">Analytical Semantic Tool</p>
+            </div>
+            <ul class="flex-1 p-2 space-y-1">
+                <li>
+                    <a href="/"
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 {% if request.url.path == '/' %}bg-gray-800 text-amber-400{% endif %}">
+                        <span>&#128202;</span> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/search"
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 {% if '/search' in request.url.path %}bg-gray-800 text-amber-400{% endif %}">
+                        <span>&#128269;</span> Search
+                    </a>
+                </li>
+                <li>
+                    <a href="/entities"
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 {% if '/entities' in request.url.path %}bg-gray-800 text-amber-400{% endif %}">
+                        <span>&#128101;</span> Entities
+                    </a>
+                </li>
+                <li>
+                    <a href="/graph"
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 {% if '/graph' in request.url.path %}bg-gray-800 text-amber-400{% endif %}">
+                        <span>&#128280;</span> Network Graph
+                    </a>
+                </li>
+                <li>
+                    <a href="/sources"
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 {% if '/sources' in request.url.path %}bg-gray-800 text-amber-400{% endif %}">
+                        <span>&#128451;</span> Sources
+                    </a>
+                </li>
+            </ul>
+            <div class="p-4 border-t border-gray-800 text-xs text-gray-600">
+                v0.1.0 &mdash; Phase 1 MVP
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="flex-1 overflow-auto">
+            <div class="max-w-7xl mx-auto p-6">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
