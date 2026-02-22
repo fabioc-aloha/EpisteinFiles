@@ -9,11 +9,25 @@
 }
 
 /* Entity type badges */
-.entity-person { color: #60a5fa; }
-.entity-org { color: #a78bfa; }
-.entity-gpe { color: #34d399; }
-.entity-fac { color: #fbbf24; }
-.entity-date { color: #f87171; }
+.entity-person {
+    color: #60a5fa;
+}
+
+.entity-org {
+    color: #a78bfa;
+}
+
+.entity-gpe {
+    color: #34d399;
+}
+
+.entity-fac {
+    color: #fbbf24;
+}
+
+.entity-date {
+    color: #f87171;
+}
 
 /* Line clamp utility */
 .line-clamp-2 {
