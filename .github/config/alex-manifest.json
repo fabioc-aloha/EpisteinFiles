@@ -1,0 +1,390 @@
+{
+  "version": "5.9.8",
+  "installedAt": "2026-02-22T19:30:41.239Z",
+  "files": {
+    ".github/copilot-instructions.md": {
+      "type": "system",
+      "originalChecksum": "f4698fc90f8d55830815dc8c31053f64"
+    },
+    ".github/instructions/SYNAPSE-SCHEMA.md": {
+      "type": "system",
+      "originalChecksum": "b92440351530d5528e493ceb830ec5d0"
+    },
+    ".github/instructions/adversarial-oversight.instructions.md": {
+      "type": "system",
+      "originalChecksum": "4b1d3c961ad7948fbaffbf59b80185fd"
+    },
+    ".github/instructions/ai-character-reference-generation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "bc225a28509dbf7a27a1c58a55e9a157"
+    },
+    ".github/instructions/ai-generated-readme-banners.instructions.md": {
+      "type": "system",
+      "originalChecksum": "10a0b3d54fe47d84c7d0018b6acaf665"
+    },
+    ".github/instructions/alex-core.instructions.md": {
+      "type": "system",
+      "originalChecksum": "d72465ee514b06ac45ff52bc08a252c5"
+    },
+    ".github/instructions/alex-identity-integration.instructions.md": {
+      "type": "system",
+      "originalChecksum": "67419e427702d586b1457d9ece259c6a"
+    },
+    ".github/instructions/architecture-decision-records.instructions.md": {
+      "type": "system",
+      "originalChecksum": "303187645d8ad8ec44ccfb78d787cccc"
+    },
+    ".github/instructions/azure-enterprise-deployment.instructions.md": {
+      "type": "system",
+      "originalChecksum": "38b91b5198b290ff8a17a7e4299b99c0"
+    },
+    ".github/instructions/bootstrap-learning.instructions.md": {
+      "type": "system",
+      "originalChecksum": "80150312f91238a60efb95b168bf0ac9"
+    },
+    ".github/instructions/brand-asset-management.instructions.md": {
+      "type": "system",
+      "originalChecksum": "f3a00493db5e4c5b454fe7eef9887f94"
+    },
+    ".github/instructions/chat-participant-patterns.instructions.md": {
+      "type": "system",
+      "originalChecksum": "be6a07228b28cdd6111e024d58a6942a"
+    },
+    ".github/instructions/code-review-guidelines.instructions.md": {
+      "type": "system",
+      "originalChecksum": "b36cb71ab86069cec79b5adb9e2abc2e"
+    },
+    ".github/instructions/cognitive-health-validation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "7ec4eb8a1f0204fa910225d6022aa0cd"
+    },
+    ".github/instructions/copilot-chat-buttons.instructions.md": {
+      "type": "system",
+      "originalChecksum": "f7564272b78ff3b0670f983ffdc3a2c6"
+    },
+    ".github/instructions/deep-thinking.instructions.md": {
+      "type": "system",
+      "originalChecksum": "45e42966f64e8cc33e6c88524b91b8e0"
+    },
+    ".github/instructions/dependency-management.instructions.md": {
+      "type": "system",
+      "originalChecksum": "f81594edfc4eefd01244fc9e869529ed"
+    },
+    ".github/instructions/dream-state-automation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "8608879dd90213564285c3bdfda57f7a"
+    },
+    ".github/instructions/embedded-synapse.instructions.md": {
+      "type": "system",
+      "originalChecksum": "5d0355f1d79a03ea44f3f86ef336cfb1"
+    },
+    ".github/instructions/empirical-validation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "de6da29d0ac5a055d15daa5cc42acdc3"
+    },
+    ".github/instructions/extension-audit-methodology.instructions.md": {
+      "type": "system",
+      "originalChecksum": "7a24b08d711822aa067676b8cbd9a77a"
+    },
+    ".github/instructions/gamma-presentation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "94989fc360be456b0335d211eb8da114"
+    },
+    ".github/instructions/global-knowledge-curation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "e223aafe05a5f3746a2ba1701e69fad4"
+    },
+    ".github/instructions/heir-project-improvement.instructions.md": {
+      "type": "system",
+      "originalChecksum": "56f427650499d490cf26e922e57befe5"
+    },
+    ".github/instructions/heir-skill-promotion.instructions.md": {
+      "type": "system",
+      "originalChecksum": "9315be47c763ad19d45d05c1aec63830"
+    },
+    ".github/instructions/knowledge-synthesis.instructions.md": {
+      "type": "system",
+      "originalChecksum": "09930267db8c4f388f38e5e5c318773b"
+    },
+    ".github/instructions/language-detection-patterns.instructions.md": {
+      "type": "system",
+      "originalChecksum": "caacb3193aefd6b42629f1e8394028af"
+    },
+    ".github/instructions/lucid-dream-integration.instructions.md": {
+      "type": "system",
+      "originalChecksum": "7c409a44392a8ad9472a7fe3d28beb46"
+    },
+    ".github/instructions/m365-agent-debugging.instructions.md": {
+      "type": "system",
+      "originalChecksum": "f728d796e622d40290bc2712b3300379"
+    },
+    ".github/instructions/markdown-mermaid.instructions.md": {
+      "type": "system",
+      "originalChecksum": "c9c882d29e6d011bb5fdf415e72c8363"
+    },
+    ".github/instructions/mcp-development.instructions.md": {
+      "type": "system",
+      "originalChecksum": "50e9be269fa1474d1dc7f69112e6cec9"
+    },
+    ".github/instructions/md-to-word.instructions.md": {
+      "type": "system",
+      "originalChecksum": "fd19246b6d3881557032dca1d0273049"
+    },
+    ".github/instructions/meditation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "d6adae2bf2419ca85fb8d5b840fe0269"
+    },
+    ".github/instructions/microsoft-graph-api.instructions.md": {
+      "type": "system",
+      "originalChecksum": "3f008830bd3c6494d5513c13bb99105d"
+    },
+    ".github/instructions/protocol-triggers.instructions.md": {
+      "type": "system",
+      "originalChecksum": "243d3a04849b6914f7fe6298219bb641"
+    },
+    ".github/instructions/release-management.instructions.md": {
+      "type": "system",
+      "originalChecksum": "c527716e622cc0c1490e5fc4e2088bd3"
+    },
+    ".github/instructions/research-first-workflow.instructions.md": {
+      "type": "system",
+      "originalChecksum": "7cedc625898122752506133831f71536"
+    },
+    ".github/instructions/roadmap-maintenance.instructions.md": {
+      "type": "system",
+      "originalChecksum": "dcff71e228f34a808bb584fcb3a5f3d0"
+    },
+    ".github/instructions/secrets-management.instructions.md": {
+      "type": "system",
+      "originalChecksum": "bddd121ff8d1cd560b400573ae055da0"
+    },
+    ".github/instructions/self-actualization.instructions.md": {
+      "type": "system",
+      "originalChecksum": "3cf17794e5e58f6e5983014ec47daa9e"
+    },
+    ".github/instructions/semantic-audit.instructions.md": {
+      "type": "system",
+      "originalChecksum": "30806c80122c83f8428694013d2c410c"
+    },
+    ".github/instructions/skill-building.instructions.md": {
+      "type": "system",
+      "originalChecksum": "2c17f4f932c2577ab96eabae6b1f909d"
+    },
+    ".github/instructions/skill-selection-optimization.instructions.md": {
+      "type": "system",
+      "originalChecksum": "c62d2878a72e1e7a9b77272cca11078d"
+    },
+    ".github/instructions/teams-app-patterns.instructions.md": {
+      "type": "system",
+      "originalChecksum": "9aa31679aefc4d0c2c89f66aa7cf135d"
+    },
+    ".github/instructions/technical-debt-tracking.instructions.md": {
+      "type": "system",
+      "originalChecksum": "906b3f72de2171dae66da750a54df02a"
+    },
+    ".github/instructions/testing-strategies.instructions.md": {
+      "type": "system",
+      "originalChecksum": "46c7c8737fe47fd1eebf6b21d628f3b5"
+    },
+    ".github/instructions/trifecta-audit.instructions.md": {
+      "type": "system",
+      "originalChecksum": "5280b31a9c0ab1e6134ed3cda149fbc1"
+    },
+    ".github/instructions/ui-ux-design.instructions.md": {
+      "type": "system",
+      "originalChecksum": "757bb6111a0cd2e420c91a111a58d598"
+    },
+    ".github/instructions/vscode-configuration-validation.instructions.md": {
+      "type": "system",
+      "originalChecksum": "d1286f5944a8ba62276b5e0038b8cb20"
+    },
+    ".github/instructions/vscode-extension-patterns.instructions.md": {
+      "type": "system",
+      "originalChecksum": "2956cec7730045d5ddbd53abeb6282ef"
+    },
+    ".github/instructions/vscode-marketplace-publishing.instructions.md": {
+      "type": "system",
+      "originalChecksum": "c6881fc1d85612158b10cefe7de8a197"
+    },
+    ".github/instructions/worldview-constitutional-ai.instructions.md": {
+      "type": "system",
+      "originalChecksum": "6389ea15b998c0bc4879d194b7035097"
+    },
+    ".github/instructions/worldview-integration.instructions.md": {
+      "type": "system",
+      "originalChecksum": "371da78c8a617cbea26623997dedbc28"
+    },
+    ".github/instructions/worldview-moral-psychology.instructions.md": {
+      "type": "system",
+      "originalChecksum": "d01b9a82545daed709fbda3b7c269e7c"
+    },
+    ".github/prompts/ai-character-reference-generation.prompt.md": {
+      "type": "system",
+      "originalChecksum": "032c14360c7442fd9d3646767c6df919"
+    },
+    ".github/prompts/ai-generated-readme-banners.prompt.md": {
+      "type": "system",
+      "originalChecksum": "4e0f81c024a1f39bc2d1b92248120843"
+    },
+    ".github/prompts/alex-initialization.prompt.md": {
+      "type": "system",
+      "originalChecksum": "7c2bf55d329679b8105ceca6aea9c343"
+    },
+    ".github/prompts/brainqa.prompt.md": {
+      "type": "system",
+      "originalChecksum": "d0d83d040e9f1efc9ac895b0fb1de911"
+    },
+    ".github/prompts/brand.prompt.md": {
+      "type": "system",
+      "originalChecksum": "c87a44fdd47810c424c3dfce08c2d9dc"
+    },
+    ".github/prompts/chat-participant.prompt.md": {
+      "type": "system",
+      "originalChecksum": "f9eaadcd6f0fe753b176075436f4d136"
+    },
+    ".github/prompts/cross-domain-transfer.prompt.md": {
+      "type": "system",
+      "originalChecksum": "75053a43c95e7dff79b04c5931880c58"
+    },
+    ".github/prompts/diagramming-mastery-meditation.prompt.md": {
+      "type": "system",
+      "originalChecksum": "e00fbd54f803bd9c58f04881b838d4b8"
+    },
+    ".github/prompts/domain-learning.prompt.md": {
+      "type": "system",
+      "originalChecksum": "56a16f754650b20a5597e3dde3d3b25c"
+    },
+    ".github/prompts/dream.prompt.md": {
+      "type": "system",
+      "originalChecksum": "9416e72cee19f916537a542b8b789be3"
+    },
+    ".github/prompts/extension-audit-methodology.prompt.md": {
+      "type": "system",
+      "originalChecksum": "93c8a331f83bca3f8ec7dc96ef87d2cb"
+    },
+    ".github/prompts/gamma.prompt.md": {
+      "type": "system",
+      "originalChecksum": "f02ca035bfc546d1768c1629a6e9baed"
+    },
+    ".github/prompts/gapanalysis.prompt.md": {
+      "type": "system",
+      "originalChecksum": "415c1c432a86c3120725517b081f1d9a"
+    },
+    ".github/prompts/graph-api.prompt.md": {
+      "type": "system",
+      "originalChecksum": "25c5bb079d9db79d7c37cf3c06f597b8"
+    },
+    ".github/prompts/improve.prompt.md": {
+      "type": "system",
+      "originalChecksum": "9bffc6351a22f2dbe69fdc80a3b6ef23"
+    },
+    ".github/prompts/learn.prompt.md": {
+      "type": "system",
+      "originalChecksum": "314d2360c9cbd7504e1f413651410132"
+    },
+    ".github/prompts/m365-agent-debug.prompt.md": {
+      "type": "system",
+      "originalChecksum": "4853f11252587c3dfc7d911781d7ee14"
+    },
+    ".github/prompts/masteraudit.prompt.md": {
+      "type": "system",
+      "originalChecksum": "caed5071a7e2e72623c72b4292a9ead8"
+    },
+    ".github/prompts/mcp-server.prompt.md": {
+      "type": "system",
+      "originalChecksum": "f02f4ce888f85851bb889a14aaedc1bc"
+    },
+    ".github/prompts/meditate.prompt.md": {
+      "type": "system",
+      "originalChecksum": "ac169469aa02af36580b6b8222711a7e"
+    },
+    ".github/prompts/performance-assessment.prompt.md": {
+      "type": "system",
+      "originalChecksum": "32f20898f92181e0344857fa8fd54104"
+    },
+    ".github/prompts/plan.prompt.md": {
+      "type": "system",
+      "originalChecksum": "3c221078ea56c1d1072c8805e9268b45"
+    },
+    ".github/prompts/quantified-enhancement-session.prompt.md": {
+      "type": "system",
+      "originalChecksum": "5bd84a164bdf7011303cd831dda61cf5"
+    },
+    ".github/prompts/release.prompt.md": {
+      "type": "system",
+      "originalChecksum": "3392651d55baa70ea05530288f346921"
+    },
+    ".github/prompts/review.prompt.md": {
+      "type": "system",
+      "originalChecksum": "d2e272738e190b9f6a9f8d78602add7e"
+    },
+    ".github/prompts/secrets.prompt.md": {
+      "type": "system",
+      "originalChecksum": "3cb72972b6c0f04972143f1d5747bf9e"
+    },
+    ".github/prompts/selfactualize.prompt.md": {
+      "type": "system",
+      "originalChecksum": "f81a1d413551ecc90c0e9b9d3a61f713"
+    },
+    ".github/prompts/tdd.prompt.md": {
+      "type": "system",
+      "originalChecksum": "c756e2df4edf26b3c963f7bf3326d1b8"
+    },
+    ".github/prompts/teams-app.prompt.md": {
+      "type": "system",
+      "originalChecksum": "516cf01271c3c141ef7bf407856217f3"
+    },
+    ".github/prompts/ui-ux-audit.prompt.md": {
+      "type": "system",
+      "originalChecksum": "3f6d55ee9efda6c3105d0c65e5723372"
+    },
+    ".github/prompts/unified-meditation-protocols.prompt.md": {
+      "type": "system",
+      "originalChecksum": "d881f65d4fc823a177b2138af1dba9de"
+    },
+    ".github/prompts/validate-config.prompt.md": {
+      "type": "system",
+      "originalChecksum": "d1047f25648a5c5ef806cf2f5f98f55b"
+    },
+    ".github/prompts/vscode-extension-audit.prompt.md": {
+      "type": "system",
+      "originalChecksum": "332f0356ab467813d7b2a032dcf0ae70"
+    },
+    ".github/prompts/word.prompt.md": {
+      "type": "system",
+      "originalChecksum": "1bdaf5fd4d4425beb500b2fa8303c115"
+    },
+    ".github/agents/alex-azure.agent.md": {
+      "type": "system",
+      "originalChecksum": "e3d6d00a294987eeddd002cfe636057f"
+    },
+    ".github/agents/alex-builder.agent.md": {
+      "type": "system",
+      "originalChecksum": "7f561f1055d7348bbb22adc9062242da"
+    },
+    ".github/agents/alex-documentarian.agent.md": {
+      "type": "system",
+      "originalChecksum": "0c11d7e6897622e6e0ad040febf14ee2"
+    },
+    ".github/agents/alex-m365.agent.md": {
+      "type": "system",
+      "originalChecksum": "0e6116c864d21bc4860fc474ac96bbd1"
+    },
+    ".github/agents/alex-researcher.agent.md": {
+      "type": "system",
+      "originalChecksum": "006a3978cd4c003f6def2322743924d1"
+    },
+    ".github/agents/alex-validator.agent.md": {
+      "type": "system",
+      "originalChecksum": "b3da1173c3af47f7c12e661d9a413f10"
+    },
+    ".github/agents/alex.agent.md": {
+      "type": "system",
+      "originalChecksum": "575b2c5474a8253e56fd60dea8de9a09"
+    },
+    ".github/muscles/README.md": {
+      "type": "system",
+      "originalChecksum": "3ab36b5cce73f92fbb3e2181a208ca4d"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../SYNAPSE-SCHEMA.json",
+  "schemaVersion": "1.0",
+  "skill": "persona-detection",
+  "version": "1.0.0",
+  "inheritance": "heir:vscode",
+  "connections": [
+    {
+      "target": ".github/instructions/alex-core.instructions.md",
+      "type": "references",
+      "strength": 0.7,
+      "note": "P5-P7 working memory slots updated by persona detection"
+    },
+    {
+      "target": ".github/skills/release-process/SKILL.md",
+      "type": "validates",
+      "strength": 0.7,
+      "note": "Persona detection tested during pre-publish"
+    }
+  ],
+  "activationBoost": [
+    "persona",
+    "project type",
+    "auto-detect",
+    "P5 slot",
+    "P6 slot",
+    "P7 slot",
+    "working memory"
+  ]
+}

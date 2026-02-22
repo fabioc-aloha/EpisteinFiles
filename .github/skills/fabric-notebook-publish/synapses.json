@@ -1,0 +1,47 @@
+{
+  "$schema": "../SYNAPSE-SCHEMA.json",
+  "schemaVersion": "2.0.0",
+  "skillId": "fabric-notebook-publish",
+  "version": "2.1.0",
+  "lastUpdated": "2026-02-06",
+  "inheritance": "inheritable",
+  "connections": [
+    {
+      "target": ".github/skills/git-workflow/SKILL.md",
+      "strength": 0.9,
+      "type": "enables",
+      "when": "Setting up Git remote or worktree for Fabric sync",
+      "yields": "Worktree creation, remote management commands"
+    },
+    {
+      "target": ".github/skills/microsoft-fabric/SKILL.md",
+      "strength": 0.9,
+      "type": "integrates",
+      "when": "Working with Fabric workspace APIs or configuration",
+      "yields": "Workspace patterns, API endpoints, authentication"
+    },
+    {
+      "target": ".github/skills/api-design/SKILL.md",
+      "strength": 0.7,
+      "type": "enables",
+      "when": "Handling Fabric REST API tokens or verification",
+      "yields": "Token refresh patterns, error handling"
+    },
+    {
+      "target": ".github/skills/markdown-mermaid/SKILL.md",
+      "strength": 0.7,
+      "type": "uses",
+      "when": "Adding diagrams to notebook documentation cells",
+      "yields": "Mermaid syntax, diagram best practices"
+    }
+  ],
+  "activationContexts": [
+    "push to fabric",
+    "sync notebooks",
+    "deploy notebooks",
+    "fabric git",
+    "changelog",
+    "notebook deployment",
+    "publish notebook"
+  ]
+}

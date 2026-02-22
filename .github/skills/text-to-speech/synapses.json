@@ -1,0 +1,155 @@
+{
+  "$schema": "../SYNAPSE-SCHEMA.json",
+  "schemaVersion": "2.0.0",
+  "skillId": "text-to-speech",
+  "version": "2.5.0",
+  "lastUpdated": "2026-02-09",
+  "inheritance": "inheritable",
+  "promotionReady": true,
+  "promotionNotes": "v2.5.0: speakPrompt command, voice mode summarization, keyboard shortcuts, CSP-compliant webview, 35 unit tests",
+  "connections": [
+    {
+      "target": ".github/skills/vscode-extension-patterns/SKILL.md",
+      "type": "implements",
+      "strength": 0.9,
+      "when": "Using native TypeScript WebSocket",
+      "yields": "Webview audio player, status bar feedback, chunked synthesis"
+    },
+    {
+      "target": ".github/skills/markdown-mermaid/SKILL.md",
+      "type": "consumes",
+      "strength": 0.9,
+      "when": "Reading markdown documents for speech",
+      "yields": "Table-to-speech conversion"
+    },
+    {
+      "target": ".github/skills/academic-research/SKILL.md",
+      "type": "enables",
+      "strength": 0.9,
+      "when": "Audio reading research papers",
+      "yields": "Summarization option for long documents"
+    },
+    {
+      "target": ".github/skills/writing-publication/SKILL.md",
+      "type": "complements",
+      "strength": 0.7,
+      "when": "Proofreading written content",
+      "yields": "Listening catches errors eyes miss"
+    },
+    {
+      "target": ".github/skills/meditation/SKILL.md",
+      "type": "enables",
+      "strength": 0.3,
+      "when": "Reading meditation summaries aloud",
+      "yields": "Audio reflection support"
+    },
+    {
+      "target": ".github/skills/creative-writing/SKILL.md",
+      "type": "complements",
+      "strength": 0.3,
+      "when": "Reading prose for rhythm checks",
+      "yields": "Audio catches pacing issues"
+    },
+    {
+      "target": ".github/skills/gamma-presentations/SKILL.md",
+      "type": "enables",
+      "strength": 0.9,
+      "when": "Rehearsing pitch content",
+      "yields": "Audio playback for delivery practice"
+    },
+    {
+      "target": ".github/skills/project-management/SKILL.md",
+      "type": "supports",
+      "strength": 0.7,
+      "when": "Reading roadmap tables aloud",
+      "yields": "Natural speech for status reviews"
+    },
+    {
+      "target": ".github/skills/debugging-patterns/SKILL.md",
+      "type": "uses",
+      "strength": 0.7,
+      "when": "Pattern engineering for text processing",
+      "yields": "Regex patterns: negative lookbehind, emoji-text deduplication"
+    },
+    {
+      "target": ".github/instructions/release-management.instructions.md",
+      "type": "informed-by",
+      "strength": 0.3,
+      "when": "TTS hotfix release",
+      "yields": "PAT-based publishing protocol"
+    }
+  ],
+  "activationContexts": [
+    "read aloud",
+    "text to speech",
+    "TTS",
+    "speak",
+    "audio",
+    "listen",
+    "play document",
+    "read this",
+    "voice synthesis",
+    "edge-tts",
+    "read table",
+    "read selection",
+    "narrate",
+    "long content",
+    "summarize for speech",
+    "speaker warmup",
+    "speak prompt",
+    "voice mode",
+    "read me a poem",
+    "generate and speak"
+  ],
+  "activationBoost": [
+    "read aloud",
+    "text to speech",
+    "TTS",
+    "speak",
+    "audio",
+    "listen",
+    "play document",
+    "read this",
+    "voice synthesis",
+    "edge-tts",
+    "read table",
+    "read selection",
+    "narrate",
+    "read out loud",
+    "read to me",
+    "say this",
+    "speak this",
+    "voice",
+    "speech",
+    "audio output",
+    "listen to document",
+    "read markdown",
+    "read file",
+    "read aloud selection",
+    "Microsoft Edge TTS",
+    "neural voice",
+    "synthesize speech",
+    "Alex read",
+    "read prompt",
+    "speak prompt response",
+    "proofread by ear",
+    "audio proofreading"
+  ],
+  "metadata": {
+    "created": "2026-02-05",
+    "updated": "2026-02-09",
+    "author": "Alex",
+    "implementation": "Native TypeScript WebSocket with chunking + LLM integration",
+    "ttsEngine": "Microsoft Edge TTS",
+    "defaultVoice": "en-US-GuyNeural",
+    "maxChunkChars": 3000,
+    "chunkTimeoutMs": 60000,
+    "speakerWarmupMs": 2000,
+    "keyboardShortcuts": {
+      "readAloud": "Ctrl+Alt+R",
+      "toggleVoice": "Ctrl+Alt+V",
+      "speakPrompt": "Ctrl+Alt+P",
+      "stopReading": "Escape (when playing)"
+    }
+  }
+}
